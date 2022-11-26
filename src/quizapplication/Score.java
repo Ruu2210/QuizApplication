@@ -34,6 +34,7 @@ public class Score extends JFrame implements ActionListener {
         
         
         setVisible(true);
+       
         }
     public void actionPerformed(ActionEvent ae){
         setVisible(false);

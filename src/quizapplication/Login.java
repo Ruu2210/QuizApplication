@@ -8,6 +8,7 @@ public class Login extends JFrame implements ActionListener {
     JButton rules,back;
     JTextField tfname; //globaly define button 
     Login(){
+          
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         getContentPane().setBackground(Color.WHITE);
         setLayout(null);
@@ -29,24 +30,26 @@ public class Login extends JFrame implements ActionListener {
         name.setForeground(new Color(21,188,213));
         add(name);
         
-         tfname = new JTextField();
+        tfname = new JTextField();
         tfname.setBounds(650,200,250,25);
         tfname.setFont(new Font("Times New Roman",Font.BOLD,18));
         add(tfname);
         
+        back = new JButton("Back");
+        back.setBounds(620,280,120,25);
+        back.setBackground(new Color(93,227,247));
+        back.setForeground(Color.WHITE);
+        back.addActionListener(this);
+        add(back);
+        
         rules = new JButton("Start");
-        rules.setBounds(620,280,120,25);
+        rules.setBounds(820,280,120,25);
         rules.setBackground(new Color(93,227,247));
         rules.setForeground(Color.WHITE);
         rules.addActionListener(this);
         add(rules);
         
-         back = new JButton("Back");
-        back.setBounds(820,280,120,25);
-        back.setBackground(new Color(93,227,247));
-        back.setForeground(Color.WHITE);
-        back.addActionListener(this);
-        add(back);
+        
         
         
         setSize(1000,550);

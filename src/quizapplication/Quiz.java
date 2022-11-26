@@ -8,22 +8,25 @@ public class Quiz extends JFrame implements ActionListener {
 
     //2D array for questions
     String questions[][] = new String[10][5];
-    String answers[][] = new String[10][2];
+    String answers[] = new String[10];
     String user_answers[][] = new String[10][1];
     JLabel qno, question;
     JRadioButton opt1, opt2, opt3, opt4;
     ButtonGroup groupoptions;
     JButton next, submit, lifeline;
 
-    public static int timer = 20;
+    public static int timer = 30;
+    public static int TIMER_RESET = 30;
     public static int ans_given = 0; //flag for checking wheather user give ans or not
     public static int count = 0;
     public static int score = 0;
-    
+
     String name;
+
     Quiz(String name) {
-        
-        this.name=name;
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+        this.name = name;
         setBounds(130, 0, 1000, 670);
         getContentPane().setBackground(Color.WHITE);
         setLayout(null);
@@ -43,76 +46,85 @@ public class Quiz extends JFrame implements ActionListener {
         question.setFont(new Font("Tahoma", Font.PLAIN, 16));
         add(question);
 
-        questions[0][0] = "W" + "hich is used to find and fix bugs in the Java programs.?";
-        questions[0][1] = "JVM";
-        questions[0][2] = "JDB";
-        questions[0][3] = "JDK";
-        questions[0][4] = "JRE";
+        questions[0][0] = "Who said this dialogue:- Dosti ka ek usool hai madam,No Sorry,No thank you ";
+        questions[0][1] = "Prem";
+        questions[0][2] = "Raj";
+        questions[0][3] = "Rahul";
+        questions[0][4] = "Aditya";
 
-        questions[1][0] = "What is the return type of the hashCode() method in the Object class?";
-        questions[1][1] = "int";
-        questions[1][2] = "Object";
-        questions[1][3] = "long";
-        questions[1][4] = "void";
+        answers[0] = "Prem";
 
-        questions[2][0] = "Which package contains the Random class?";
-        questions[2][1] = "java.util package";
-        questions[2][2] = "java.lang package";
-        questions[2][3] = "java.awt package";
-        questions[2][4] = "java.io package";
+        questions[1][0] = "Finish the quote: Ek chutki sindoor ki kimat........??";
+        questions[1][1] = "tum kya jaano om bapu";
+        questions[1][2] = "tum kya jaano ramesh babu";
+        questions[1][3] = "tumhe kya pata ramesh babu";
+        questions[1][4] = "tum kya jaano ramesh bapu";
 
-        questions[3][0] = "An interface with no fields or methods is known as?";
-        questions[3][1] = "Runnable Interface";
-        questions[3][2] = "Abstract Interface";
-        questions[3][3] = "Marker Interface";
-        questions[3][4] = "CharSequence Interface";
+        answers[1] = "tum kya jaano ramesh babu";
 
-        questions[4][0] = "In which memory a String is stored, when we create a string using new operator?";
-        questions[4][1] = "Stack";
-        questions[4][2] = "String memory";
-        questions[4][3] = "Random storage space";
-        questions[4][4] = "Heap memory";
+        questions[2][0] = "Complete the song: Moochhon ko thoda round ghumake,anna ke jaisa....?";
+        questions[2][1] = "chashma nikalke,Coconut mai pani milake";
+        questions[2][2] = "chashma lagake,Coconut mai pani milake";
+        questions[2][3] = "chashma lagake,Coconut mai lassi milake";
+        questions[2][4] = "chashma ghumake,Coconut mai lassi milake";
 
-        questions[5][0] = "Which of the following is a marker interface?";
-        questions[5][1] = "Runnable interface";
-        questions[5][2] = "Remote interface";
-        questions[5][3] = "Readable interface";
-        questions[5][4] = "Result interface";
+        answers[2] = "chashma lagake,Coconut mai lassi milake";
 
-        questions[6][0] = "Which keyword is used for accessing the features of a package?";
-        questions[6][1] = "import";
-        questions[6][2] = "package";
-        questions[6][3] = "extends";
-        questions[6][4] = "export";
+        questions[3][0] = "What is the No 1 Comedy movie in india?";
+        questions[3][1] = "3 idiots,2009";
+        questions[3][2] = "Andaz Apna Apna,1994";
+        questions[3][3] = "Welcome,2007";
+        questions[3][4] = "Munna Bhai MBBS,2003";
 
-        questions[7][0] = "In java, jar stands for?";
-        questions[7][1] = "Java Archive Runner";
-        questions[7][2] = "Java Archive";
-        questions[7][3] = "Java Application Resource";
-        questions[7][4] = "Java Application Runner";
+        answers[3] = "Andaz Apna Apna,1994";
 
-        questions[8][0] = "Which of the following is a mutable class in java?";
-        questions[8][1] = "java.lang.StringBuilder";
-        questions[8][2] = "java.lang.Short";
-        questions[8][3] = "java.lang.Byte";
-        questions[8][4] = "java.lang.String";
+        questions[4][0] = "Which was the first Indian Movie nominated for Oscar?";
+        questions[4][1] = "Lagaan";
+        questions[4][2] = "Salaam Bombay";
+        questions[4][3] = "Mother India";
+        questions[4][4] = "Slumdog Millionaire";
 
-        questions[9][0] = "Which of the following option leads to the portability and security of Java?";
-        questions[9][1] = "Bytecode is executed by JVM";
-        questions[9][2] = "The applet makes the Java code secure and portable";
-        questions[9][3] = "Use of exception handling";
-        questions[9][4] = "Dynamic binding between objects";
+        answers[4] = "Mother India";
 
-        answers[0][1] = "JDB";
-        answers[1][1] = "int";
-        answers[2][1] = "java.util package";
-        answers[3][1] = "Marker Interface";
-        answers[4][1] = "Heap memory";
-        answers[5][1] = "Remote interface";
-        answers[6][1] = "import";
-        answers[7][1] = "Java Archive";
-        answers[8][1] = "java.lang.StringBuilder";
-        answers[9][1] = "Bytecode is executed by JVM";
+        questions[5][0] = "Guess the Movie: Babu Moshai Zindagi badi honi chahiye lambi nahi.";
+        questions[5][1] = "Bawarchi";
+        questions[5][2] = "Namak Haram";
+        questions[5][3] = "Kati patang";
+        questions[5][4] = "Anand";
+
+        answers[5] = "Anand";
+
+        questions[6][0] = "Which Sport is played in movie: LAGAAN";
+        questions[6][1] = "Cricket";
+        questions[6][2] = "Football";
+        questions[6][3] = "ping pong";
+        questions[6][4] = "Baseball";
+
+        answers[6] = "Cricket";
+
+        questions[7][0] = "What was the nick name of kartik aryan in 'Pyar ka punchnama 2'";
+        questions[7][1] = "Sonu";
+        questions[7][2] = "GOGO";
+        questions[7][3] = "Liquid";
+        questions[7][4] = "Titu";
+
+        answers[7] = "GOGO";
+
+        questions[8][0] = "Which was India's First Sound Movie";
+        questions[8][1] = "Alam Ara";
+        questions[8][2] = "Raja Harishchandra";
+        questions[8][3] = "sholey";
+        questions[8][4] = "Don";
+
+        answers[8] = "Alam Ara";
+
+        questions[9][0] = "Director of movie 3 idiots";
+        questions[9][1] = "Sanjay leela Bhansali";
+        questions[9][2] = "Rajkumar Hirani";
+        questions[9][3] = "Prakash Jha";
+        questions[9][4] = "Amir Khan";
+
+        answers[9] = "Rajkumar Hirani";
 
         opt1 = new JRadioButton();
         opt1.setBounds(125, 400, 500, 25);
@@ -202,7 +214,7 @@ public class Quiz extends JFrame implements ActionListener {
             count++; //to go to next question after clicking next button
             start(count);
         } else if (ae.getSource() == lifeline) {
-            if (count == 2 || count == 4 || count == 6 || count == 8) {
+            if (count == 2 || count == 4 || count == 6 || count == 8 || count == 0) {
                 opt2.setEnabled(false);
                 opt4.setEnabled(false);
             } else {
@@ -212,22 +224,25 @@ public class Quiz extends JFrame implements ActionListener {
             lifeline.setEnabled(false); //disabled lifeline option after one time use
 
         } else if (ae.getSource() == submit) {
-             ans_given =1;
+            ans_given = 1;
             if (groupoptions.getSelection() == null) {
                 user_answers[count][0] = "";
             } else {
-               user_answers[count][0] = groupoptions.getSelection().getActionCommand();
+                user_answers[count][0] = groupoptions.getSelection().getActionCommand();
             }
-            for (int i = 0; i < user_answers.length; i++) {
-                if (user_answers[i][0].equals(answers[i][1])) {
+            for (int i = 0; i < 10; i++) {
+                if (user_answers[i][0].equals(answers[i])) {
                     score += 10;
+                    System.out.println(score);
                 } else {
                     score += 0;
                 }
+
             }
+
             setVisible(false);
             //object of score class
-            new Score(name,score);
+            new Score(name, score);
 
         }
     }
@@ -258,9 +273,9 @@ public class Quiz extends JFrame implements ActionListener {
         //if option is not selected still go to next page after timer is end
         if (ans_given == 1) {
             ans_given = 0;
-            timer = 20;
+            timer = TIMER_RESET;
         } else if (timer < 0) {
-            timer = 20;
+            timer = TIMER_RESET;
             //when we use lifeline where few options are disabled 
             //and when we move to next question enabled all options using below
             opt1.setEnabled(true);
@@ -278,8 +293,8 @@ public class Quiz extends JFrame implements ActionListener {
                 } else {
                     user_answers[count][0] = groupoptions.getSelection().getActionCommand();
                 }
-                for (int i = 0; i < user_answers.length; i++) {
-                    if (user_answers[i][0].equals(answers[i][1])) {
+                for (int i = 0; i < 10; i++) {
+                    if (user_answers[i][0].equals(answers[i])) {
                         score += 10;
                     } else {
                         score += 0;
@@ -287,7 +302,12 @@ public class Quiz extends JFrame implements ActionListener {
                 }
                 setVisible(false);
                 //score class open
-                new Score(name,score);
+                new Score(name, score);
+                timer = 30;
+                TIMER_RESET = 30;
+                ans_given = 0; //flag for checking wheather user give ans or not
+                count = 0;
+                score = 0;
             } else {
                 //to check if ans is given or not we use Buttongroup
                 if (groupoptions.getSelection() == null) {
